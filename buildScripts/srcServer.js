@@ -1,10 +1,22 @@
-let express = require('express');
-let path = require('path');
-let open = require('open');
+import express from 'express';
+import path from 'path';
+import open from 'open';
 
-let port = 3000;
+const port = 3000,
+app = express();
 
-let app = express();
+// configure webpack bundler
+{
+  const webpack = require('webpack'),
+        bundleConfig = require('../webpack.config.dev').default,
+        webpackDevMiddleware = require('webpack-dev-middleware'),
+        bundleCompiler = webpack(bundleConfig);
+
+  app.use(webpackDevMiddleware(bundleCompiler, {
+    noInfo: false, 
+    publicPath: bundleConfig.output.publicPath
+  }));
+}      
 
 app.get('/', (request, response) =>{
   response.sendFile(path.join(__dirname, '../src/index.html'));
