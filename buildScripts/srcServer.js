@@ -30,7 +30,7 @@ app.get('/users', (req, res) => {
     {'id': 2, 'firstName': 'Tammy', 'lastName': 'Norton', 'email': 'tnorton@yahoo.com'},
     {'id': 3, 'firstName': 'Tina', 'lastName': 'Lee', 'email': 'lee.tina@hotmail.com'},
   ])
-})
+});
 
 app.listen(port, (err) => {
   err ? console.log(err) : open(`http://localhost:${port}`);

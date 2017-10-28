@@ -5,7 +5,7 @@
   "scripts": {
     "prestart" : "babel-node buildScripts/startMessage.js",
     "localtunnel": "lt --port 3000",
-    "start" : "npm-run-all --parallel package-security-check open:src lint:watch test:watch",
+    "start" : "npm-run-all --parallel package-security-check open:src lint:watch test:watch start-mockapi",
     "open:src" : "babel-node buildScripts/srcServer.js",
     "package-security-check": "nsp check",
     "work-in-progress-share": "npm-run-all --parallel open:src localtunnel",
@@ -13,7 +13,9 @@
     "lint:watch": "npm run lint -- --watch",
     "test": "mocha --reporter progress buildScripts/testSetup.js \"src/**/*.test.js\"",
     "test:watch": "npm run test -- --watch",
-    "generate-mock-data": "babel-node buildScripts/generateMockData"
+    "generate-mock-data": "babel-node buildScripts/generateMockData",
+    "prestart-mockapi": "npm run generate-mock-data",
+    "start-mockapi": "json-server --watch src/api/db.json --port 3001"
   },
   "author": "Cory House",
   "license": "MIT",
