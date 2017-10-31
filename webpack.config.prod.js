@@ -14,7 +14,7 @@ export default {
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
-    filename: '[name].js'
+    filename: '[name].[chunkhash].js'
   },
   plugins: [
     // Use CommonsChunkPlugin to create a separate bundle
